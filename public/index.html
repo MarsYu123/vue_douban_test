@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <title>douban</title>
+    <script>
+      ;(function(w) {
+        'use strict'
+        var n = w.navigator,
+          d = w.document
+        var r = []
+        r.isIE = 'number' == typeof d.documentMode ? d.documentMode : false //Trident
+        r.isWebkit = 'undefined' != typeof n.productSub && '20030107' == n.productSub
+        r.isGecko = 'object' == typeof w.netscape
+        r.isChrome = 'object' == typeof w.chrome || (r.isWebkit && 'string' == typeof n.vendor && /Google/.test(n.vendor))
+        r.isUC = 'object' == typeof w.ucapi
+        r.isFirefox = 'object' == typeof w.InstallTrigger
+        r.isEdge = !r.isIE && !!w.StyleMedia
+        r.isOpera = (!!w.opr && !!opr.addons) || !!w.opera || n.userAgent.indexOf(' OPR/') >= 0
+        r.isSafari =
+          Object.prototype.toString.call(w.HTMLElement).indexOf('Constructor') > 0 ||
+          (function(p) {
+            return p.toString() === '[object SafariRemoteNotification]'
+          })(!w['safari'] || safari.pushNotification)
+        if (!r.isSafari && !r.isChrome && 'string' == typeof n.vendor && /Apple/.test(n.vendor)) {
+          r.isSafari = true
+        }
+        r.isBlink = (r.isChrome || r.isOpera) && !!w.CSS
+        w.browsecore = r
+      })('undefined' != typeof window ? window : this)
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but douban doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
