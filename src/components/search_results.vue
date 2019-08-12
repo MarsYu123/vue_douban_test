@@ -2,16 +2,10 @@
   <ElRow type="flex" justify="center">
     <ElCol :span="13">
       <div class="search_cont">
-        <div
-          class="search_item"
-          v-for="(item, index) in select_data"
-          :key="index"
-        >
-          <img :src="item.images.medium" alt="" />
+        <div class="search_item" v-for="(item, index) in select_data" :key="index">
+          <img :src="item.images.medium" alt />
           <div class="item_info">
-            <div class="item_title">
-              {{ item.title }}
-            </div>
+            <div class="item_title">{{ item.title }}</div>
             <div class="rate">
               <el-rate
                 :value="item.rating.average / 2"
@@ -19,21 +13,16 @@
                 show-score
                 allow-half
                 text-color="#ff9900"
-              >
-              </el-rate>
+              ></el-rate>
               <span>（{{ item.rating.stars }}人评价）</span>
             </div>
             <div class="info">
-              <span v-for="info_item in item.genres" :key="info_item"
-                >{{ info_item }}/</span
-              ><span>{{ item.title }}</span>
+              <span v-for="info_item in item.genres" :key="info_item">{{ info_item }}/</span>
+              <span>{{ item.title }}</span>
             </div>
             <div class="actor">
-              <span v-for="actor_item in item.directors" :key="actor_item.id"
-                >{{ actor_item.name }}/</span
-              ><span v-for="casts_item in item.casts" :key="casts_item.id"
-                >{{ casts_item.name }}/</span
-              >
+              <span v-for="actor_item in item.directors" :key="actor_item.id">{{ actor_item.name }}/</span>
+              <span v-for="casts_item in item.casts" :key="casts_item.id">{{ casts_item.name }}/</span>
             </div>
           </div>
         </div>
@@ -43,41 +32,39 @@
 </template>
 
 <script>
+import comment from "./module/comment";
 export default {
-  name: 'search_results',
-  data () {
+  name: "search_results",
+  data() {
     return {
-      select_val: '',
+      select_val: "",
       select_data: {},
       a: 123
-    }
+    };
   },
-  methods: {
-
-  },
-  computed: {
-
-  },
-  mounted () {
+  methods: {},
+  computed: {},
+  mounted() {
     var that = this;
-    that.select_val = that.$route.query.select
+    that.select_val = that.$route.query.select;
     // 获取搜索内容
-    that.axios.get( '/api/movie/search', {
-      params: {
-        q: that.select_val,
-        start: 0,
-        count: 10
-      }
-    } )
-      .then( function ( res ) {
-        console.log( res )
-        that.select_data = res.data.subjects
-      } )
-      .catch( function ( err ) {
-        console.log( err )
-      } )
+    that.axios
+      .get("/api/movie/search" + comment.url_apikey, {
+        params: {
+          q: that.select_val,
+          start: 0,
+          count: 10
+        }
+      })
+      .then(function(res) {
+        console.log(res);
+        that.select_data = res.data.subjects;
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
   }
-}
+};
 </script>
 
 <style lang="scss">

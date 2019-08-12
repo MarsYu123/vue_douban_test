@@ -1,0 +1,18 @@
+a {
+  text-decoration: none !important;
+  display: inline-block;
+  color: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+body {
+  min-width: 1224px;
+}
+
+.mouse {
+  cursor: pointer;
+}
+/*# sourceMappingURL=public.css.map */

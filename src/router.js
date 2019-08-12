@@ -12,6 +12,8 @@ import filmReview from '@/components/filmReview'
 import tv from '@/components/tv'
 import searchResults from '@/components/search_results'
 import move_detail from '@/components/move_detail'
+import celebrity_detail from '@/components/celebrity_detail'
+import vuex_text from '@/components/vuex_text'
 
 Vue.use(Router)
 
@@ -58,6 +60,16 @@ export default new Router({
       path: '/move_detail',
       name: 'move_detail',
       component: move_detail
+    },
+    {
+      path: '/celebrity_detail',
+      name: 'celebrity_detail',
+      component: celebrity_detail
+    },
+    {
+      path: '/vuex_text',
+      name: 'vuex_text',
+      component: vuex_text
     }
   ],
   scrollBehavior(to, from, savedPosition) {
@@ -66,5 +78,10 @@ export default new Router({
     } else {
       return { x: 0, y: 0 }
     }
-  }
+  },
+  watch: {
+    $route(){
+      console.log('111')
+    }
+  },
 })
